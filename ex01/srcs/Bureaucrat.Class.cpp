@@ -6,11 +6,11 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:18:12 by nbardavi          #+#    #+#             */
-/*   Updated: 2024/04/24 09:19:30 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:38:36 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Bureaucrat.Class.hpp"
+#include "../include/Form.Class.hpp"
 #include "../include/colors.h"
 #include <iostream>
 #include <exception>
@@ -71,6 +71,15 @@ void Bureaucrat::Decremente(){
 	this->_grade++;
 }
 
+void Bureaucrat::signForm(Form& f){
+	try{
+		f.beSigned(*this);
+	}
+	catch(GradeTooLowException){
+		std::cout << RED << this->getName() << " is only grade " << this->getGrade() << " and need to be grade " << f.getGradeToSign() << " to sign the form." << RESET << std::endl;
+	}
+}
+
 const char * GradeTooHighException::what() const throw(){
 	return ("Grade too high");
 }
@@ -78,3 +87,4 @@ const char * GradeTooHighException::what() const throw(){
 const char * GradeTooLowException::what() const throw(){
 	return ("Grade too low");
 }
+

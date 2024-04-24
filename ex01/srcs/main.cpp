@@ -6,11 +6,11 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:46:31 by nbardavi          #+#    #+#             */
-/*   Updated: 2024/04/24 09:18:10 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:42:36 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Bureaucrat.Class.hpp"
+#include "../include/Form.Class.hpp"
 #include "../include/colors.h"
 #include <iostream>
 
@@ -18,27 +18,15 @@ int main(void){
 	Bureaucrat a("Benoit", 43);
 	Bureaucrat c("David", 150);
 	Bureaucrat d("Fred", 1);
-	std::cout << a;
-	a.Incremente();
-	std::cout << a;
-	a.Decremente();
-	std::cout << a;
+	Form e("Form 2", 150, 50);
+	Form f("Form 3", 50, 10);
 	try{
-		Bureaucrat b("Warren", 151);
+		Form b("Form 1", 151, 54);
 	}
 	catch(GradeTooLowException){
-		std::cout << RED << "Bon retry Warren" << RESET << std::endl;
+		std::cout << RED << "Wrong value Form 1" << RESET << std::endl;
 	}
-	try{
-		c.Decremente();
-	}
-	catch(GradeTooLowException){
-		std::cout << RED << "David too low" << RESET << std::endl;
-	}
-	try{
-		d.Incremente();
-	}
-	catch(GradeTooHighException){
-		std::cout << RED << "Fred too high" << RESET << std::endl;
-	}
+	c.signForm(e);
+	c.signForm(f);
+	a.signForm(f);
 }
