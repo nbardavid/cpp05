@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:05:37 by nbardavi          #+#    #+#             */
-/*   Updated: 2024/04/24 16:24:20 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:15:04 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ private:
 	static Aform *_MakeRobot(const std::string &target);
 	static Aform *_MakeShrubbery(const std::string &target);
 	static Aform *_MakePresident(const std::string &target);
+	void _forceCompilerUse();
 };
 
 std::ostream& operator<<(std::ostream& out, const Intern& b);
