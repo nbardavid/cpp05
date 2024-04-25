@@ -6,7 +6,7 @@
 /*   By: nbardavi <nbabardavid@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:05:39 by nbardavi          #+#    #+#             */
-/*   Updated: 2024/04/24 16:26:20 by nbardavi         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:15:12 by nbardavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,40 @@ Intern& Intern::operator=(const Intern& other){
     return *this;
 }
 
-static Aform *_MakeRobot(const std::string &target){
+Aform *Intern::_MakeRobot(const std::string &target){
+	if (!target.size()){
+		return NULL;
+	}
 	return (new RobotomyRequestForm(target));
 }
 
-static Aform *_MakePresident(const std::string &target){
+Aform *Intern::_MakePresident(const std::string &target){
+	if (!target.size()){
+		return NULL;
+	}
 	return (new PresidentialPardonForm(target));
 }
 
-static Aform *_MakeShrubbery(const std::string &target){
+Aform *Intern::_MakeShrubbery(const std::string &target){
+	if (!target.size()){
+		return NULL;
+	}
 	return (new ShrubberyCreationForm(target));
+}
+
+void Intern::_forceCompilerUse() {
+    std::string dummy;
+    if (false) {
+		this->_MakeRobot(dummy);
+        this->_MakePresident(dummy);
+        this->_MakeShrubbery(dummy);
+    }
 }
 
 Aform *Intern::makeForm(const std::string &name, const std::string &target){
 	std::string tab[3] = {"robotomy request", "president pardon", "shrubbery creation"};
 	FormCreator creator[3] = {&Intern::_MakeRobot, &Intern::_MakePresident, &Intern::_MakeShrubbery};
+	this->_forceCompilerUse();
 	for (int i = 0; i < 3; i++){
 		if (tab[i] == name){
 			return (creator[i](target));
